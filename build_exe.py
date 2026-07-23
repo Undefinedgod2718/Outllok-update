@@ -11,6 +11,8 @@ def build_exe():
     wizard_script = os.path.join(base_dir, "wizard_gui.py")
     tools_dir = os.path.join(base_dir, "tools", "UnRAR.exe")
     sounds_dir = os.path.join(base_dir, "sounds")
+    assets_dir = os.path.join(base_dir, "assets")
+    ico_file = os.path.join(assets_dir, "logo.ico")
 
     if not os.path.exists(tools_dir):
         print(f"❌ 錯誤: 找不到 UnRAR 工具: {tools_dir}")
@@ -22,9 +24,11 @@ def build_exe():
         "PyInstaller",
         "--onefile",
         "--noconsole",
+        f"--icon={ico_file}",
         "--name=Outlook_Contact_Updater_Wizard",
         f"--add-data={tools_dir};tools",
         f"--add-data={sounds_dir};sounds",
+        f"--add-data={assets_dir};assets",
         wizard_script
     ]
 
@@ -34,7 +38,7 @@ def build_exe():
     if res.returncode == 0:
         exe_path = os.path.join(base_dir, "dist", "Outlook_Contact_Updater_Wizard.exe")
         print("\n==================================================")
-        print(" 🎉 打包成功！獨立可執行檔已產出 (含 8-Bit Retro 音效):")
+        print(" 🎉 打包成功！獨立可執行檔已產出 (含 logo.ico 圖示與黑體 UI 圖章):")
         print(f" 📦 檔案路徑: {exe_path}")
         print("==================================================")
     else:

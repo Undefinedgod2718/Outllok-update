@@ -3,6 +3,8 @@ import sys
 import threading
 import tkinter as tk
 from tkinter import filedialog, messagebox
+from PIL import Image, ImageTk
+
 import mcp_outlook_core
 from mcp_outlook_core import (
     ImportMode,
@@ -32,6 +34,18 @@ BUTTON_ACTIVE   = "#5c5c5c"   # 按鈕懸停
 VERSION = "v2.1.0"
 DEFAULT_RAR = r"C:\Users\richard_zhang\Downloads\260702mailaddress.rar"
 
+def get_asset_path(filename: str) -> str:
+    """Locate asset file in project assets/ folder or PyInstaller sys._MEIPASS."""
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    asset_path = os.path.join(base_dir, "assets", filename)
+    if os.path.exists(asset_path):
+        return asset_path
+    if hasattr(sys, "_MEIPASS"):
+        meipass_asset = os.path.join(sys._MEIPASS, "assets", filename)
+        if os.path.exists(meipass_asset):
+            return meipass_asset
+    return ""
+
 class MinecraftOutlookWizard(tk.Tk):
     def __init__(self):
         super().__init__()
@@ -39,6 +53,14 @@ class MinecraftOutlookWizard(tk.Tk):
         self.geometry("780x560")
         self.resizable(False, False)
         self.configure(bg=BG_STONE_DARK)
+
+        # Set Window Icon (.ico)
+        ico_path = get_asset_path("logo.ico")
+        if ico_path and os.path.exists(ico_path):
+            try:
+                self.iconbitmap(ico_path)
+            except Exception as e:
+                print(f"[UI] Set iconbitmap error: {e}")
 
         # Application state
         self.selected_file = DEFAULT_RAR if os.path.exists(DEFAULT_RAR) else ""
@@ -68,15 +90,30 @@ class MinecraftOutlookWizard(tk.Tk):
         grass_stripe = tk.Frame(header_frame, bg=GRASS_GREEN, height=12)
         grass_stripe.pack(fill="x", side="top")
 
+        # Container for logo + title
+        content_box = tk.Frame(header_frame, bg=DIRT_BROWN)
+        content_box.pack(fill="both", expand=True)
+
+        # Render UI Logo Image (unnamed.jpg)
+        logo_img_path = get_asset_path("unnamed.jpg")
+        if logo_img_path and os.path.exists(logo_img_path):
+            try:
+                pil_img = Image.open(logo_img_path).resize((44, 44), Image.Resampling.LANCZOS)
+                self.logo_photo = ImageTk.PhotoImage(pil_img)
+                logo_lbl = tk.Label(content_box, image=self.logo_photo, bg=DIRT_BROWN, bd=0)
+                logo_lbl.pack(side="left", padx=15, pady=4)
+            except Exception as e:
+                print(f"[UI] Load logo image error: {e}")
+
         # Header Title
         title_lbl = tk.Label(
-            header_frame,
+            content_box,
             text=f"🌾 OUTLOOK CONTACT UPDATER WIZARD {VERSION} 🌾",
             font=("Consolas", 15, "bold"),
             fg=MINECRAFT_GOLD,
             bg=DIRT_BROWN
         )
-        title_lbl.pack(py=10)
+        title_lbl.pack(side="left", py=8)
 
         # Pixel separator border
         sep = tk.Frame(self, bg=BORDER_DARK, height=4)
