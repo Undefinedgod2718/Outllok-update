@@ -1,0 +1,20 @@
+# PyInstaller & Build outputs
+build/
+*.spec
+*.log
+
+# Python bytecode & cache
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+
+# Temporary directories
+temp/
+tmp/
+*.tmp
+
+# Environment & IDE
+.idea/
+.vscode/
+.antigravity/
