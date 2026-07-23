@@ -1,7 +1,13 @@
-# PyInstaller & Build outputs
+# PyInstaller & Binary Release outputs
 build/
+dist/
 *.spec
 *.log
+
+# Excluded documentation and legacy scripts (Forbid from Git tracking)
+wiki.md
+mcp_analysis.md
+import_contacts.ps1
 
 # Python bytecode & cache
 __pycache__/
