@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [v2.1.1] - 2026-07-23
+
+### Added
+- **Custom Branding Assets**:
+  - `assets/logo.ico`: Windows file icon for `Outlook_Contact_Updater_Wizard.exe`.
+  - `assets/unnamed.jpg`: UI header logo stamp integrated into the Minecraft grassland banner.
+- **Python Dependencies File**:
+  - Added `requirements.txt` listing `pywin32`, `Pillow`, `mcp`, and `pyinstaller`.
+
+### Changed
+- Updated `wizard_gui.py` to display the custom window icon and UI logo image.
+- Updated `build_exe.py` with `--icon=assets/logo.ico` and `--add-data="assets;assets"`.
+
+---
+
 ## [v2.1.0] - 2026-07-23
 
 ### Added
@@ -19,10 +34,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Semantic Versioning (`v2.1.0`).
   - Remote repository integration: `https://github.com/Undefinedgod2718/Outllok-update.git`.
   - Structured `.gitignore` and `CHANGELOG.md`.
-
-### Changed
-- Updated `wizard_gui.py` header to display `v2.1.0`.
-- Updated PyInstaller `build_exe.py` to bundle `sounds/` into `Outlook_Contact_Updater_Wizard.exe`.
 
 ---
 

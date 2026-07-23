@@ -1,8 +1,8 @@
-# Outlook 聯絡人自動更新精靈 (Minecraft Style v2.1.0)
+# Outlook 聯絡人自動更新精靈 (Minecraft Style v2.1.1)
 
 [![Python Version](https://img.shields.io/badge/python-3.13+-blue.svg)](https://www.python.org/)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
-[![Release](https://img.shields.io/badge/version-v2.1.0-gold.svg)](CHANGELOG.md)
+[![Release](https://img.shields.io/badge/version-v2.1.1-gold.svg)](CHANGELOG.md)
 
 本專案提供一套具備 **Minecraft 農村草地像素風格 (Minecraft Rural Grassland Pixel Art)** 的 Outlook 聯絡人自動更新安裝精靈 GUI 與核心 MAPI 引擎。支援備份現有聯絡人、自動解壓 `.rar` / `.zip` / `.pst` 檔案，並提供覆蓋、共存、智慧比對三種升級模式。
 
@@ -10,6 +10,9 @@
 
 ## 🌾 特色亮點 (Features)
 
+- **🖼️ 自訂品牌圖示與標誌 (Custom Branding)**：
+  - Windows Executable 使用專屬檔圖示 `logo.ico`。
+  - 精靈標題列嵌入獨特 UI Logo 圖章 (`unnamed.jpg`)。
 - **🌾 Minecraft 視覺與 8-Bit 音效體驗**：
   - 泥土層與草地綠面板設計、黑體像素字型與 **綠色經驗值進度條 (EXP Bar)**。
   - 內建 8-bit 音效 (`click.wav`, `xp_gain.wav`, `victory.wav`) 提示互動操作。
@@ -28,12 +31,17 @@
 
 ## 🚀 快速開始 (Quick Start)
 
-### 執行安裝精靈 GUI
-1. 雙擊執行 `dist/Outlook_Contact_Updater_Wizard.exe` (或以 Python 執行 `python wizard_gui.py`)。
-2. 精靈將自動檢測 Outlook 狀態。若 Outlook 正在執行，可點擊「一鍵關閉 Outlook」。
-3. 選擇 `.rar` / `.zip` / `.pst` 通訊錄檔案。
-4. 選擇升級模式（覆蓋 / 共存 / 比對）並點擊「開始執行升級更新」。
-5. 完成後檢視驗證審計報告。
+### 安裝依賴與執行 GUI
+```bash
+# 1. 安裝套件依賴
+pip install -r requirements.txt
+
+# 2. 執行 GUI 精靈
+python wizard_gui.py
+```
+
+### 執行單一獨立 .exe
+雙擊執行 `dist/Outlook_Contact_Updater_Wizard.exe` 即可（無需安裝 Python 或 WinRAR）。
 
 ---
 
@@ -85,7 +93,7 @@ python test_three_functions.py
 # 2. 生成 8-bit 音效檔
 python create_sounds.py
 
-# 3. 打包單一 EXE
+# 3. 打包單一 EXE (含 logo.ico)
 python build_exe.py
 ```
 
@@ -93,5 +101,5 @@ python build_exe.py
 
 ## 📜 授權與版本 (License & Versioning)
 
-- **Current Version**: `v2.1.0` (Semantic Versioning)
+- **Current Version**: `v2.1.1` (Semantic Versioning)
 - **Changelog**: 詳見 [CHANGELOG.md](CHANGELOG.md)

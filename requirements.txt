@@ -1,0 +1,13 @@
+# Project Dependencies for Outlook Contact Updater Wizard & FastMCP Server
+
+# Core GUI & Image Processing
+Pillow>=10.0.0
+
+# Windows Outlook COM MAPI Integration
+pywin32>=306
+
+# Model Context Protocol (FastMCP Server)
+mcp>=1.0.0
+
+# Executable Packaging
+pyinstaller>=6.0.0
